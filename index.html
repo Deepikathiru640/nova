@@ -1,0 +1,290 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#090914">
+<title>NOVA — Explore Beyond</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+:root {
+  --bg: #090914;
+  --panel: #121222;
+  --text: #f6f4ff;
+  --muted: #a4a2bc;
+  --purple: #a78bfa;
+  --cyan: #67e8f9;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg); color: var(--text);
+  font-family: 'DM Sans', sans-serif; overflow-x: hidden;
+}
+a { text-decoration: none; color: inherit; }
+button { font: inherit; }
+.container { width: min(1120px, 90%); margin: auto; }
+nav {
+  height: 82px; display: flex; align-items: center;
+  justify-content: space-between; position: relative; z-index: 5;
+  border-bottom: 1px solid #ffffff10;
+}
+.logo { font: 700 27px 'Space Grotesk'; letter-spacing: 2px; }
+.logo span { color: var(--purple); }
+.navlinks { display: flex; align-items: center; gap: 32px; }
+.navlinks a { color: var(--muted); font-size: 14px; transition: .25s; }
+.navlinks a:hover, .navlinks a.active { color: white; }
+.navlinks .contact-link {
+  color: white; border: 1px solid #ffffff28;
+  padding: 11px 19px; border-radius: 30px;
+}
+.menu-btn {
+  display: none; color: white; background: none;
+  border: 0; font-size: 27px; cursor: pointer;
+}
+.hero {
+  min-height: 690px; display: grid;
+  grid-template-columns: 1.1fr .9fr; align-items: center;
+  gap: 30px; position: relative; padding: 70px 0;
+}
+.hero:before {
+  content: ""; position: absolute; z-index: -1;
+  width: 500px; height: 500px; border-radius: 50%;
+  background: #6d28d933; filter: blur(100px);
+  top: 30px; right: 3%;
+}
+.eyebrow {
+  display: inline-flex; gap: 9px; align-items: center;
+  padding: 9px 14px; border: 1px solid #ffffff19;
+  border-radius: 30px; color: #d5c9ff; font-size: 12px;
+  letter-spacing: 1px; text-transform: uppercase;
+  background: #ffffff06;
+}
+.dot { width: 7px; height: 7px; border-radius: 50%; background: #67e8a5; }
+h1 {
+  font: 700 clamp(48px, 6.5vw, 83px)/1.04 'Space Grotesk';
+  letter-spacing: -4px; margin: 28px 0;
+}
+.gradient {
+  background: linear-gradient(110deg, #c4b5fd, #818cf8, #67e8f9);
+  color: transparent; background-clip: text;
+}
+.hero p { max-width: 480px; color: var(--muted); line-height: 1.9; font-size: 16px; }
+.actions { display: flex; gap: 14px; margin-top: 34px; flex-wrap: wrap; }
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: 10px; padding: 15px 23px; border-radius: 12px;
+  font-weight: 600; font-size: 14px; transition: .3s;
+}
+.btn-primary {
+  color: #100c20; background: linear-gradient(120deg, #c4b5fd, #67e8f9);
+}
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 35px #8b5cf655; }
+.btn-outline { border: 1px solid #ffffff24; color: white; }
+.btn-outline:hover { background: #ffffff10; }
+.visual { display: grid; place-items: center; min-height: 410px; position: relative; }
+.orb {
+  width: min(340px, 70vw); aspect-ratio: 1; border-radius: 50%;
+  background: radial-gradient(circle at 32% 25%, #e0d6ff, #9575ff 18%, #5134a0 43%, #14142a 70%);
+  box-shadow: inset -25px -30px 60px #080816, 0 0 100px #8b5cf633;
+  animation: float 6s ease-in-out infinite; position: relative;
+}
+.orb:before {
+  content: ""; position: absolute; inset: -30px;
+  border: 1px solid #b9a4ff38; border-radius: 50%;
+  transform: rotateX(67deg) rotate(-25deg);
+}
+.orb:after {
+  content: ""; position: absolute; inset: -53px -18px;
+  border: 1px solid #67e8f936; border-radius: 50%;
+  transform: rotateX(70deg) rotate(35deg);
+}
+.orb-label {
+  position: absolute; bottom: 8%; right: 0;
+  background: #161528d9; backdrop-filter: blur(15px);
+  border: 1px solid #ffffff1c; padding: 17px 20px;
+  border-radius: 14px; font-size: 12px; color: var(--muted);
+}
+.orb-label strong { display: block; color: white; font-size: 15px; margin-bottom: 4px; }
+@keyframes float { 50% { transform: translateY(-15px) rotate(5deg); } }
+.stats {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid #ffffff15; border-bottom: 1px solid #ffffff15;
+  padding: 30px 0; gap: 20px;
+}
+.stat strong { display: block; font: 600 27px 'Space Grotesk'; }
+.stat span { color: var(--muted); font-size: 12px; }
+.section { padding: 100px 0; }
+.section-head { display: flex; justify-content: space-between; gap: 20px; align-items: end; margin-bottom: 38px; }
+h2 { font: 600 clamp(30px, 4vw, 44px)/1.15 'Space Grotesk'; letter-spacing: -1.5px; }
+.section-head p { max-width: 340px; color: var(--muted); line-height: 1.7; font-size: 14px; }
+.cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.card {
+  padding: 28px; border: 1px solid #ffffff12; border-radius: 20px;
+  background: linear-gradient(145deg, #151528, #0e0e1b);
+  transition: .3s;
+}
+.card:hover { transform: translateY(-7px); border-color: #a78bfa66; }
+.card-icon {
+  width: 48px; height: 48px; border-radius: 14px;
+  display: grid; place-items: center; font-size: 22px;
+  background: #a78bfa17; border: 1px solid #a78bfa28; margin-bottom: 25px;
+}
+.card h3 { font: 600 20px 'Space Grotesk'; margin-bottom: 12px; }
+.card p { color: var(--muted); font-size: 14px; line-height: 1.8; }
+.card a { display: inline-block; margin-top: 22px; color: #c4b5fd; font-size: 13px; }
+.cta {
+  padding: 58px 30px; text-align: center; border-radius: 24px;
+  border: 1px solid #ffffff17;
+  background: radial-gradient(ellipse at top, #6d28d929, transparent 65%), #111121;
+}
+.cta p { color: var(--muted); line-height: 1.8; margin: 16px auto 25px; max-width: 500px; }
+footer {
+  border-top: 1px solid #ffffff12; padding: 28px 0;
+  color: var(--muted); font-size: 12px;
+  display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap;
+}
+footer a { color: #d4c8ff; }
+.reveal { opacity: 0; transform: translateY(20px); transition: .7s; }
+.reveal.show { opacity: 1; transform: translateY(0); }
+@media(max-width:760px) {
+  .hero { grid-template-columns: 1fr; padding: 75px 0 45px; }
+  h1 { letter-spacing: -2.5px; }
+  .visual { min-height: 340px; }
+  .orb { width: 240px; }
+  .navlinks {
+    display: none; position: absolute; top: 72px; left: 0; right: 0;
+    padding: 22px; background: #111121; border: 1px solid #ffffff15;
+    border-radius: 16px; flex-direction: column; align-items: stretch; gap: 22px;
+  }
+  .navlinks.open { display: flex; }
+  .menu-btn { display: block; }
+  .cards { grid-template-columns: 1fr; }
+  .section { padding: 70px 0; }
+  .section-head { align-items: start; flex-direction: column; }
+}
+@media(prefers-reduced-motion:reduce) {
+  *, *:before, *:after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  .reveal { opacity: 1; transform: none; }
+}
+</style>
+</head>
+<body>
+<header class="container">
+  <nav>
+    <a class="logo" href="index.html">NO<span>V</span>A.</a>
+    <button class="menu-btn" id="menuBtn" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+    <div class="navlinks" id="navlinks">
+      <a class="active" href="index.html">Overview</a>
+      <a href="home.html">Home</a>
+      <a href="#discover">Discover</a>
+      <a class="contact-link" href="contact.html">Contact ↗</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+<section class="container hero">
+  <div>
+    <div class="eyebrow"><span class="dot"></span> A new digital perspective</div>
+    <h1>Think beyond.<br><span class="gradient">Explore NOVA.</span></h1>
+    <p>
+      A space for curious minds, fresh ideas and digital discovery.
+      Step into a world where imagination meets technology and
+      ordinary experiences become extraordinary.
+    </p>
+    <div class="actions">
+      <a class="btn btn-primary" href="home.html">Explore the universe ↗</a>
+      <a class="btn btn-outline" href="contact.html">Let's connect</a>
+    </div>
+  </div>
+  <div class="visual" aria-label="Animated abstract purple planet">
+    <div class="orb"></div>
+    <div class="orb-label"><strong>Beyond ordinary.</strong> Your next idea starts here.</div>
+  </div>
+</section>
+
+<div class="container stats">
+  <div class="stat"><strong>01</strong><span>Stay curious</span></div>
+  <div class="stat"><strong>∞</strong><span>Ideas to explore</span></div>
+  <div class="stat"><strong>100%</strong><span>Creative energy</span></div>
+</div>
+
+<section class="container section" id="discover">
+  <div class="section-head reveal">
+    <div><div class="eyebrow">The NOVA experience</div><h2 style="margin-top:18px">Curiosity has<br>no boundaries.</h2></div>
+    <p>Explore a collection of ideas designed to inspire your next move, spark creativity and help you see things differently.</p>
+  </div>
+  <div class="cards">
+    <article class="card reveal">
+      <div class="card-icon">✳</div>
+      <h3>Creative Lab</h3>
+      <p>Discover original concepts, inspiration and creative ways to approach everyday challenges.</p>
+      <a href="home.html?category=creativity">Explore ideas ↗</a>
+    </article>
+    <article class="card reveal">
+      <div class="card-icon">⌘</div>
+      <h3>Digital Universe</h3>
+      <p>Explore useful digital concepts, technology trends and tools that expand your possibilities.</p>
+      <a href="home.html?category=technology">Enter the universe ↗</a>
+    </article>
+    <article class="card reveal">
+      <div class="card-icon">◈</div>
+      <h3>Mind & Beyond</h3>
+      <p>Find fresh perspectives, thoughtful prompts and small challenges that keep your mind moving.</p>
+      <a href="home.html?category=mind">Find inspiration ↗</a>
+    </article>
+  </div>
+</section>
+
+<section class="container section">
+  <div class="cta reveal">
+    <div class="eyebrow">Your journey starts now</div>
+    <h2 style="margin-top:20px">Ready to see what's possible?</h2>
+    <p>There is always something new to discover. Take the first step and explore the NOVA experience.</p>
+    <a class="btn btn-primary" href="home.html">Start exploring →</a>
+  </div>
+</section>
+</main>
+
+<footer class="container">
+  <a class="logo" href="index.html">NO<span>V</span>A.</a>
+  <span>© <span id="year"></span> NOVA Studio. Made for curious minds.</span>
+  <a href="contact.html">Get in touch ↗</a>
+</footer>
+
+<script>
+const menuBtn = document.getElementById('menuBtn');
+const navlinks = document.getElementById('navlinks');
+
+menuBtn.addEventListener('click', () => {
+  const opened = navlinks.classList.toggle('open');
+  menuBtn.setAttribute('aria-expanded', opened);
+  menuBtn.textContent = opened ? '✕' : '☰';
+});
+
+navlinks.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    navlinks.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded', 'false');
+    menuBtn.textContent = '☰';
+  });
+});
+
+document.getElementById('year').textContent = new Date().getFullYear();
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('show');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
